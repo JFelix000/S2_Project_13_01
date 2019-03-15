@@ -35,6 +35,7 @@
 
 */
 //  file loaded asynchronously using async
+
 // onload the page will run the init function
 window.onload = init;
 
@@ -49,15 +50,32 @@ function init() {
             stars[i].addEventListener("mouseenter", lightStars);
       }
       // add event listener for the comment box on the keyup event to run the function updateCount
-      document.getElementById('comment').addEventListener('keyup', updateCount);
+      document.getElementById("comment").addEventListener("keyup", updateCount);
 }
 
 function lightStars(e) {
+      // this is to target the alt value in var starNumber
+      var starNumber = e.target.alt;
+
+      // 
+      var stars = document.querySelectorAll("span#stars img");
+
+      for (var i = 0; i < starNumber; i++) {
+            stars[i].src = "bw_star2.png";
+      }
+      for (var i = starNumber; i < 5; i++) {
+            stars[i].src = "bw_star.png";
+      }
+      document.getElementById("rating").value = starNumber + "  star(s)";
+      stars[i].addEventListener("mouseleave", turnOffStars);
+      stars[i].addEventListener("click", function (){
+            
+      });
 
 }
 
 function turnOffStars(e) {
-
+      stars.removeEventListener("mouseenter");
 }
 
 function updateCount() {
