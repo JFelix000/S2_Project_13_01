@@ -59,34 +59,55 @@ function lightStars(e) {
 
       // 
       var stars = document.querySelectorAll("span#stars img");
-
+      // these for loops run the image 
       for (var i = 0; i < starNumber; i++) {
             stars[i].src = "bw_star2.png";
       }
       for (var i = starNumber; i < 5; i++) {
             stars[i].src = "bw_star.png";
       }
-      document.getElementById("rating").value = starNumber + "  star(s)";
-      stars[i].addEventListener("mouseleave", turnOffStars);
-      stars[i].addEventListener("click", function (){
-            
+      // event listeners to activate the functions after the listener is triggered
+      document.getElementById("rating").value = starNumber + " star(s)";
+      e.target.addEventListener("mouseleave", turnOffStars);
+      // anonymous function run after clicked function that removes turnOffStars when the mouse leaves the area
+      e.target.addEventListener("click", function () {
+            e.target.removeEventListener("mouseleave", turnOffStars);
       });
-
 }
 
 function turnOffStars(e) {
-      stars.removeEventListener("mouseenter");
+      // you use the span#stars img per the instructions in the code
+      var stars = document.querySelectorAll("span#stars img");
+      for (var i = 0; i < stars.length; i++) {
+            stars[i].src = "bw_star.png"; 
+      }
+      // this targets the rating value and it makes it 
+      document.getElementById("rating").value = "";
 }
 
 function updateCount() {
-
+      // this is to reference the comment value and i use the id of comment to do so.
+      var commentText = document.getElementById("comment").value;
+      var charCount = countCharacters(commentText);
+      //this references the wordCount input box using the id
+      var wordCountBox = document.getElementById("wordCount");
+      //this is to calculate the number of integers in the code for it to be displayed via javascript
+      wordCountBox.value = charCount + "/1000";
+      // this is the if else statement that changes the wordcount style or color based on what is happening
+      if (charCount > 1000) {
+            wordCount.style.color = "white";
+            wordCount.style.backgroundColor = "red";
+      } else {
+            wordCount.style.color = "black";
+            wordCount.style.backgroundColor = "white";
+      }
 }
 
 function countCharacters(textStr) {
 
 }
   
-  
+
 /*=================================================================*/
 
 function countCharacters(textStr) {
